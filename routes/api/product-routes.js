@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 // get one product
 router.get("/:id", (req, res) => {
   Product.findByPk(req.params.id,{
-    include:[Tag]
+    include:[{ model: Category}, { model: Tag, through: ProductTag}]
   }).then((data) => {
     if(data==null){
       return res.status(404).json({msg:"no such product exists!"})
