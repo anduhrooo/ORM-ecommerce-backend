@@ -23,6 +23,8 @@ clone the repository to your current machine. once cloned, open the 'server.js' 
 
 ## Usage
 
+https://youtu.be/plcnHCr3aDY
+
 once running, open up an instance of Insomnia and run basic CRUD commands to ensure the functionality of the application.
 
 ## Test
