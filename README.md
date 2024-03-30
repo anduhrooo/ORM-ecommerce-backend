@@ -20,10 +20,17 @@ This project aims to create a backend for a generic e-commerce website. It utili
 ## Installation
 
 clone the repository to your current machine. 
+
 once cloned, open the 'server.js' file in the terminal and run the command 'npm i' to install all necessary npm packages. 
+
 Next, launch postgreSQL by typing 'psql -U postgres' in your terminal and enter your password. 
+
 after succesfully logging in, run the command '\i db/schema.sql' to initialize your database and then run '\q' to quit postgreSQL. 
-afterwards, run the command 'node seed/index.js' to seed or populate your database (note, you may need to create/update your .env file to include DB_NAME, DB_USER, and DB_PASSWORD to run. please ensure your .env file is in your root directory)
+
+afterwards, run the command 'node seed/index.js' to seed or populate your database (note, you may need to create/update your .env file to include DB_NAME, DB_USER, 
+
+and DB_PASSWORD to run. please ensure your .env file is in your root directory)
+
 finally, run 'node server.js' to run your application. if you have any questions, please reference the video below.
 
 ## Usage
