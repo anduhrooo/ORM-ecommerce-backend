@@ -11,14 +11,18 @@ router.get('/', (req, res) => {
   // be sure to include its associated Products
 });
 
-router.get('/:id', (req, res) => {
-  // find one category by its `id` value
-  Category.findOne({
-    where:{
-      id:req.params.id
+router.get("/:id", (req, res) => {
+  Category.findByPk(req.params.id,{
+    include:[Product]
+  }).then((data) => {
+    if(data==null){
+      return res.status(404).json({msg:"no such id exists!"})
     }
-  })
-  // be sure to include its associated Products
+    res.json(data);
+  }).catch(err=>{
+    console.log(err);
+    res.status(500).json({msg:"error occurred",err})
+  });;
 });
 
 router.post('/', (req, res) => {
@@ -32,27 +36,37 @@ router.post('/', (req, res) => {
   })
 });
 
-router.put('/:id', (req, res) => {
-  // update a category by its `id` value
-  Category.update(
-    {
-      id:req.body.id,
-      category_name:req.body.category_name
+router.put("/:id", (req, res) => {
+  Category.update(req.body, {
+    where: {
+      id: req.params.id,
     },
-    {
-    where:{
-      id:req.params.id
+  }).then((data) => {
+    if(data[0]===0){
+      return res.status(404).json({msg:"no such category exists!"})
     }
-  })
+    res.json(data);
+  }).catch(err=>{
+    console.log(err);
+    res.status(500).json({msg:"error occurred",err})
+  });
 });
 
-router.delete('/:id', (req, res) => {
-  // delete a category by its `id` value
+
+router.delete("/:id", (req, res) => {
   Category.destroy({
-    where:{
-      id:req.params.id
+    where: {
+      id: req.params.id,
+    },
+  }).then((data) => {
+    if(data===0){
+      return res.status(404).json({msg:"no such Category exists!"})
     }
-  })
+    res.json(data);
+  }).catch(err=>{
+    console.log(err);
+    res.status(500).json({msg:"error occurred",err})
+  });
 });
 
 module.exports = router;

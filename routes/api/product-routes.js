@@ -13,14 +13,18 @@ router.get('/', (req, res) => {
 });
 
 // get one product
-router.get('/:id', (req, res) => {
-  // find a single product by its `id`
-  Product.findOne({
-    where:{
-      id:req.params.id
+router.get("/:id", (req, res) => {
+  Product.findByPk(req.params.id,{
+    include:[Tag]
+  }).then((data) => {
+    if(data==null){
+      return res.status(404).json({msg:"no such product exists!"})
     }
-  })
-  // be sure to include its associated Category and Tag data
+    res.json(data);
+  }).catch(err=>{
+    console.log(err);
+    res.status(500).json({msg:"error occurred",err})
+  });;
 });
 
 // create new product
@@ -106,13 +110,20 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
-  Category.destroy({
-    where:{
-      id:req.params.id
+router.delete("/:id", (req, res) => {
+  Product.destroy({
+    where: {
+      id: req.params.id,
+    },
+  }).then((data) => {
+    if(data===0){
+      return res.status(404).json({msg:"no such Product exists!"})
     }
-  })
+    res.json(data);
+  }).catch(err=>{
+    console.log(err);
+    res.status(500).json({msg:"error occurred",err})
+  });
 });
 
 module.exports = router;
