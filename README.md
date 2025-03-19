@@ -3,7 +3,7 @@
 
 ## Description
 
-This project aims to create a backend for a generic e-commerce website. It utilizes Express.js and Sequilize to interact with a PostgreSQL database. The manager of the fictional ecommerce site can view products and categories of the items in their store for tracking and managing their goods.
+This project aims to create a backend for a generic e-commerce website. It utilizes Express.js and Sequelize to interact with a PostgreSQL database. The manager of the fictional ecommerce site can view products and categories of the items in their store for tracking and managing their goods.
 
 ## Table of Contents
 
